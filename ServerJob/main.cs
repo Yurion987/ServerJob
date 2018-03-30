@@ -13,13 +13,14 @@ namespace ServerJob
     {
         static void Main(string[] args)
         {
-            LoadData d = new LoadData();
-            d.WebParsing();
-            Databazka db = new Databazka();
-            db.InsertData(d.tabulkaZWebStranky);
-            db.odpoj();
-            
-            
+            while (true) {
+                LoadData d = new LoadData();
+                d.WebParsing();
+                Databazka db = new Databazka();
+                db.InsertData(d.tabulkaZWebStranky);
+                db.odpoj();
+                System.Threading.Thread.Sleep(150000);
+            }
         }
     }
     

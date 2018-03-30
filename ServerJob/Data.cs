@@ -68,8 +68,9 @@ namespace ServerJob
                 response.Close();
                 readStream.Close();
             }
-            var vsetkyZaznamy = webPage.DocumentNode.SelectNodes("//li[contains(@class, 'ON')]");
-            string datum = webPage.DocumentNode.SelectNodes("/ html / body / div / div / div[3] / div[2] / div / div / div / div / div / div[1] / div / div[1] / div / span[2]")[0].InnerText;
+            var vsetkyZaznamy = webPage.DocumentNode.SelectSingleNode("//*[@id='timeline']").SelectNodes(".//li[contains(@class, 'ON')]");
+            string datum = webPage.DocumentNode.SelectSingleNode("/ html/body/div/div/div[3]/div[2]/div/div/div/div/div/div[1]/div/div[1]/div/span[2]").InnerText;
+            if (datum.Equals("")) datum = webPage.DocumentNode.SelectSingleNode("/html/body/div/div/div[3]/div[1]/div[2]/div/div/div/div/div/div/div/div[1]/div/div[1]/div/span[1]").InnerText;
             datum = FormatujDatum(datum);
             for (int i = 0; i < vsetkyZaznamy.Count; i++)
             {
